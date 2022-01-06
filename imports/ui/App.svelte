@@ -4,7 +4,7 @@
   import Stock from './Stock.svelte';
   import { StockCollection } from '../api/StockCollection';
 
-  $m: stocks = StockCollection.find({}).fetch();
+  $m: stocks = StockCollection.find({}, {sort: {stock: 1}}).fetch();
 </script>
 
 
@@ -13,13 +13,30 @@
 
   <table class="table table-hover table-sm table-condensed">
     <thead>
-      <tr>
+      <tr class="info">
+        <th colspan="3">About</th>
+        <th colspan="2">Price/Volume</th>
+        <th colspan="2">Trends</th>
+        <th colspan="2">Analysis</th>
+        <th colspan="2">Finance</th>
+      </tr>
+      <tr class="info">
         <th>Stock</th>
-        <th>Today</th>
-        <th>Avg 50</th>
-        <th>Avg 200</th>
-        <th>Volume</th>
+        <th>Sector</th>
+        <th>Industry</th>
+
+        <th>Price (today)</th>
+        <th>Volume (today)</th>
+
+        <th>Average (50days)</th>
+        <th>Average (200days)</th>
+        
+        <th>Donchian</th>
+        <th>D</th>
+
         <th>P/E</th>
+        <th>PEG</th>
+
       </tr>
     </thead>
     <tbody>
