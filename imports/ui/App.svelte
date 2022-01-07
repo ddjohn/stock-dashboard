@@ -6,6 +6,7 @@
   import { StockCollection } from '../api/StockCollection';
 
   let searchTerm = '';
+  let graph ="ERIC-B.ST";
 
   $m: stocks = StockCollection.find({}, {sort: {stock: 1}}).fetch();
 	$: filteredStocks = stocks.filter(stock => stock.stock.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
@@ -16,12 +17,7 @@
 <div class="responsive">
   <h1>Stocks!</h1>
 
-    <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
-
-  <Graph/>
+  <Graph stockName="{graph}"/>
 
   <table border="1" class="table table-hover table-sm table-condensed">
     <thead>

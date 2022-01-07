@@ -123,6 +123,26 @@ export class StockMethods {
         }
     }
 
+    async graph(stock) {
+        const end = Math.round(Date.now() / 1000)
+
+        var d = new Date();        
+        d.setMonth(d.getMonth()-3);
+        const start = Math.round(d / 1000);
+
+        
+        try {
+            console.log('url', url_v8 + 'chart/' + stock + '?symbol=' + stock + '&period1=0&period2=0&interval=1d');
+            const result = await got.get(url_v8 + 'chart/' + stock + '?symbol=' + stock + '&period1=' + start +'&period2=' + end + '&interval=1d', {});
+            const json = JSON.parse(result.body);
+            return json.chart.result[0];
+        }
+        catch (error) {
+            console.log('error', stock, error);
+            return null;
+        }
+    }
+
     report() {
         reports.forEach((report) => {
             stockMethods.getTest('ERIC-B.ST', report).then((json) => {

@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { StockCollection } from '/imports/api/StockCollection';
 import { StockMethods, stocks } from '/server/StockMethods';
+import '/imports/api/StockAPI';
 
 function percentage(current, base) {
     return (current-base)/base;

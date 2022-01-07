@@ -1,5 +1,6 @@
 <script>
     console.log("Stock", "Stock");
+
     export let stock;
 
 
@@ -32,7 +33,12 @@ td {
 
 
 <tr>
-<th class="info"><a href="#" class="tooltip-test" title="{stock.sector} - {stock.industry}">{stock.stock}</a></th>
+<th class="info">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <span class="glyphicon glyphicon-stats"></span>
+   </button>
+    <a href="#" class="tooltip-test" title="{stock.short} ({stock.sector} - {stock.industry})">{stock.stock}</a>
+</th>
 
 <td class="{colorGreenRed(stock.today, 0, 0)}">
         {stock.price.toFixed(2)}<br/>
