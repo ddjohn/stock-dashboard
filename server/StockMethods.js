@@ -10,7 +10,12 @@ export const stocks_omx30 = ["%5EOMX",
     "SEB-A.ST", "SHB-A.ST", "SINCH.ST", "SKA-B.ST", "SKF-B.ST", 
     "SWED-A.ST", "SWMA.ST", "TEL2-B.ST", "TELIA.ST", "VOLV-B.ST"];    
 
-export const stocks = stocks_omx30;
+export const stocks_other = [
+    "CFISH.ST", "COIC.ST", "DUNI.ST", "NENT-B.ST", //"IMINT.ST",  
+    "VBG-B.ST" //"QBIT.ST", "SYNACT.ST",  
+];
+
+export const stocks = stocks_omx30.concat(stocks_other);
 
 export const reports = [
     'assetProfile',

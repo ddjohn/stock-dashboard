@@ -44,18 +44,16 @@ function averageWithNull(arr) {
     return {
         mean: mean,
         variance: variance,
-        devation: Math.sqrt(variance),
+        deviation: Math.sqrt(variance),
         max: arr.reduce((max, val) => max > val ? max : val),
         min: arr.reduce((min, val) => min < val ? min : val),
     }
-    //return {avg:sum/n, max:max, min:min};
 }
 
 Meteor.startup(() => {
     console.log('main', 'startup');
 
     const stockMethods = new StockMethods();
-
 
     stocks.forEach((stock) => {
         console.log('stock', stock);
@@ -66,7 +64,7 @@ Meteor.startup(() => {
             var temp20 = averageWithNull(json.indicators.quote[0].close.reverse().filter(i => i).slice(0, 20));
             var temp50 = averageWithNull(json.indicators.quote[0].close.reverse().filter(i => i).slice(0, 50));
             var temp200 = averageWithNull(json.indicators.quote[0].close.reverse().filter(i => i).slice(0, 200));
-            
+
             StockCollection.update({'stock':stock}, 
             { 
                 $set: {
@@ -78,6 +76,7 @@ Meteor.startup(() => {
                     average20:temp20.mean,
                     average50:temp50.mean,
                     average200:temp200.mean,
+                    deviation :temp20.deviation,
 
                     time: Date.now()
                 } 
@@ -112,6 +111,8 @@ Meteor.startup(() => {
                     low: json.price.regularMarketDayLow.raw,
                     volume: json.price.regularMarketVolume.raw,
                     
+
+                    recommendations: json.recommendationTrend ? json.recommendationTrend.trend[1] : '',
 
                     time: Date.now()
                 } 
