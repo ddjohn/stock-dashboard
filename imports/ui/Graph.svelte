@@ -57,6 +57,9 @@
                 risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
             },
             seriesType: 'candlesticks',
+            vAxes: {
+                2: {minValue: -1, maxValue: 1, textPosition: 'none'}
+            },
             series: {
                 0: {targetAxisIndex:1},
                 1: {type: 'bars', targetAxisIndex:0, color: 'lightgray'},
@@ -64,9 +67,10 @@
                 3: {type: 'line', targetAxisIndex:1, color: 'red'},
                 4: {type: 'line', targetAxisIndex:1, color: 'green'},
                 5: {type: 'line', targetAxisIndex:1, color: 'yellow'},
-                6: {type: 'line', targetAxisIndex:1, color: 'yellow'},
+                6: {type: 'line', targetAxisIndex:1, color: 'yellow', visibleInLegend: false},
                 7: {type: 'line', targetAxisIndex:1, color: 'purple'},
-                8: {type: 'line', targetAxisIndex:1, color: 'purple'},
+                8: {type: 'line', targetAxisIndex:1, color: 'purple', visibleInLegend: false},
+                9: {type: 'line', targetAxisIndex:2, color: 'cyan'},
             },
             //curveType: "function"
         };
@@ -89,6 +93,7 @@
             data.addColumn("number", "Donchian");
             data.addColumn("number", "Bollinger");
             data.addColumn("number", "Bollinger");
+            data.addColumn("number", "MACD");
 
             for (let [index, val] of resp.timestamp.entries()) {
                 if(index > resp.timestamp.length-50) {
@@ -108,6 +113,7 @@
                         donchian(resp.indicators.quote[0].low, index, 20).low,
                         bollinger(resp.indicators.quote[0].close, index, 20).high,
                         bollinger(resp.indicators.quote[0].close, index, 20).low,
+                        sma(resp.indicators.quote[0].close, index, 12) - sma(resp.indicators.quote[0].close, index, 26),
                     ]);
                 }
             }

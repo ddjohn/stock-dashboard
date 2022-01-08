@@ -4,25 +4,37 @@
     export let stock;
 
 
-function colorGreenRed(value, green , red) {
-    if(value < red)
-      return 'danger';
+    function colorGreenRed(value, green , red) {
+        if(value < red)
+            return 'danger';
     
-    if(value > green)
-      return 'success';
+        if(value > green)
+            return 'success';
       
-    return 'info';
-}
+        return 'info';
+    }
 
-function colorRedGreen(value, red, green) {
-    if(value > red)
-      return 'danger';
+    function colorRedGreen(value, red, green) {
+        if(value > red)
+            return 'danger';
     
-    if(value < green)
-      return 'success';
+        if(value < green)
+            return 'success';
       
-    return 'info';
-}
+        return 'info';
+    }
+
+    function color(value, color_low, limit_low, color_na, limit_high, color_high) {
+        if(value > limit_high)
+            return color_high;
+    
+        if(value < limit_low)
+            return color_low;
+      
+        return color_na;
+    }
+
+    
 </script>
 
 <style>
@@ -41,36 +53,46 @@ td {
     </a>
 </th>
 
-<td class="{colorGreenRed(stock.today, 0, 0)}">
+<!-- Price -->
+<td class="{color(stock.today, 'danger', 0, 'info', 0, 'success')}">
         {stock.price.toFixed(2)}<br/>
     ({(100*stock.today).toFixed(2)}%)
 </td>
-<td class="{colorGreenRed(stock.volumePct, 0.2, -999)}">
+
+<!-- Volume -->
+<td class="{color(stock.volumePct, 'info', 0.2, 'info', 0.2, 'success')}">
     {stock.volume}<br/>
     ({(100*stock.volumePct).toFixed(2)})
 </td>
 
-<td class="{colorGreenRed(stock.price - stock.average50, 0, -999)}">
+<!-- 50 days average-->
+<td class="{color(stock.price - stock.average50, 'info', 0.2, 'info', 0.2, 'success')}">
     { (100*(stock.price - stock.average50)/stock.average50).toFixed(2) }%
 </td>
-<td class="{colorGreenRed(stock.price - stock.average200, 0, -999)}">
+
+<!-- 200 days average-->
+<td class="{color(stock.price - stock.average200, 'info', 0.2, 'info', 0.2, 'success')}">
     { (100*(stock.price - stock.average200)/stock.average200).toFixed(2) }% 
 </td>
 
-<td class="{colorGreenRed((stock.price - stock.donchianLow) / (stock.donchianHigh - stock.donchianLow), 0.99, -1)}">
+<!-- Donchian tunnel-->
+<td class="{color((stock.price - stock.donchianLow) / (stock.donchianHigh - stock.donchianLow), 'danger', 0.1, 'info', 0.99, 'success')}">
     {stock.donchianLow.toFixed(2)}-{stock.donchianHigh.toFixed(2)}<br/>
     ({(100.0*(stock.price - stock.donchianLow) / (stock.donchianHigh - stock.donchianLow)).toFixed(2)}%)    
 </td>
 
+<!-- Bollinger -->
 <td class="{colorGreenRed( (stock.price - (stock.average20-2*stock.deviation)) / ( (stock.average20+2*stock.deviation) - (stock.average20-2*stock.deviation)), 0, 0)}">
     {(stock.average20-2*stock.deviation).toFixed(2)} - {(stock.average20+2*stock.deviation).toFixed(2)}<br/>
     ({ (100.0*(stock.price - (stock.average20-2*stock.deviation) ) / ( (stock.average20+2*stock.deviation) - (stock.average20-2*stock.deviation) )).toFixed(2)}%)    
 </td>
 
-<td class="{colorGreenRed( 4*stock.deviation, -99, 5)}">
+<!-- Squeeze -->
+<td class="{color(4*stock.deviation, 'success', 5, 'info', 5, 'info')}">
     {(4*stock.deviation).toFixed(2)}<br/>
 </td>
 
+<!-- Recommenations-->
 <td class="{colorGreenRed(stock.recommendations.strongBuy+stock.recommendations.buy-stock.recommendations.sell-stock.recommendations.strongSell,0, 0)}">
     {#if stock.recommendations.hold}
     <button class="btn btn-danger" type="button">{stock.recommendations.strongSell}</button>

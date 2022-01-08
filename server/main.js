@@ -43,6 +43,7 @@ Meteor.startup(() => {
         stockMethods.getTest(stock, 'chart').then((json) => {
             //console.log(JSON.stringify(json, null, 2));
             
+            console.log('==> stock', stock);
             var temp20 = averageWithNull(json.indicators.quote[0].close.reverse().filter(i => i).slice(0, 20));
             var temp50 = averageWithNull(json.indicators.quote[0].close.reverse().filter(i => i).slice(0, 50));
             var temp200 = averageWithNull(json.indicators.quote[0].close.reverse().filter(i => i).slice(0, 200));
