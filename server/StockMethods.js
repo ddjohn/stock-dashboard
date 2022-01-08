@@ -127,10 +127,9 @@ export class StockMethods {
         const end = Math.round(Date.now() / 1000)
 
         var d = new Date();        
-        d.setMonth(d.getMonth()-3);
+        d.setMonth(d.getMonth()-12);
         const start = Math.round(d / 1000);
 
-        
         try {
             console.log('url', url_v8 + 'chart/' + stock + '?symbol=' + stock + '&period1=0&period2=0&interval=1d');
             const result = await got.get(url_v8 + 'chart/' + stock + '?symbol=' + stock + '&period1=' + start +'&period2=' + end + '&interval=1d', {});
@@ -156,45 +155,9 @@ export class StockMethods {
 }
 
 /*
-[
-  'assetProfile',
-  'summaryProfile',
-  'summaryDetail', => yes
-  'esgScores',
-  'price', => yes
-  'incomeStatementHistory',
-  'incomeStatementHistoryQuarterly',
-  'balanceSheetHistory',
-  'balanceSheetHistoryQuarterly',
-  'cashflowStatementHistory',
-  'cashflowStatementHistoryQuarterly',
-  'defaultKeyStatistics',
-  'financialData',
-  'calendarEvents',
-  'secFilings',
-  'recommendationTrend',
-  'upgradeDowngradeHistory',
-  'institutionOwnership',
-  'fundOwnership',
-  'majorDirectHolders',
-  'majorHoldersBreakdown',
-  'insiderTransactions',
-  'insiderHolders',
-  'netSharePurchaseActivity',
-  'earnings',
-  'earningsHistory',
-  'earningsTrend',
-  'industryTrend',
-  'indexTrend', - PEG, PE
-  'sectorTrend' - skip
-]
-
 https://query1.finance.yahoo.com/v8/finance/chart/ERIC-B.ST?region=US&lang=en-US&includePrePost=false&interval=2m&useYfid=true&range=1d&corsDomain=finance.yahoo.com&.tsrc=finance
 https://query1.finance.yahoo.com/v8/finance/chart/ERIC-B.ST?symbol=ERIC-B.ST&period1=1628287200&period2=1641457518&useYfid=true&interval=1d&includePrePost=true&events=div%7Csplit%7Cearn&lang=en-US&region=US&crumb=deAirDLypgd&corsDomain=finance.yahoo.com
 https://query2.finance.yahoo.com/v10/finance/quoteSummary/AAPL?modules=assetProfile%2CsummaryProfile%2CsummaryDetail%2CesgScores%2Cprice%2CincomeStatementHistory%2CincomeStatementHistoryQuarterly%2CbalanceSheetHistory%2CbalanceSheetHistoryQuarterly%2CcashflowStatementHistory%2CcashflowStatementHistoryQuarterly%2CdefaultKeyStatistics%2CfinancialData%2CcalendarEvents%2CsecFilings%2CrecommendationTrend%2CupgradeDowngradeHistory%2CinstitutionOwnership%2CfundOwnership%2CmajorDirectHolders%2CmajorHoldersBreakdown%2CinsiderTransactions%2CinsiderHolders%2CnetSharePurchaseActivity%2Cearnings%2CearningsHistory%2CearningsTrend%2CindustryTrend%2CindexTrend%2CsectorTrend
 https://query2.finance.yahoo.com/v7/finance/options/AAPL?date=1679011200
-
 https://stackoverflow.com/questions/44030983/yahoo-finance-url-not-working
-
-
-  */
+*/

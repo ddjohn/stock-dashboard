@@ -19,33 +19,14 @@ function ifExist(check, value) {
 }
 
 function averageWithNull(arr) {
-
-
-/*    var sum = 0.0;
-    var max = 0.0;
-    var min = 9999.0;
-    var n = 0;
-    arr.forEach(element => {
-       if(element !== null) {
-           sum += element;
-           n++;
-
-           if(element > max) {
-               max = element;
-           }
-
-           if(element < min) {
-               min = element;
-           }
-       } 
-    });*/
     const mean = arr.reduce((s, n) => s + n) / arr.length;
     const variance = arr.reduce((s, n) => s + (n - mean) ** 2, 0) / (arr.length - 1);
+    const stddev = Math.sqrt(variance);
 
     return {
         mean: mean,
         variance: variance,
-        deviation: Math.sqrt(variance),
+        deviation: stddev,
         max: arr.reduce((max, val) => max > val ? max : val),
         min: arr.reduce((min, val) => min < val ? min : val),
     }
@@ -123,7 +104,5 @@ Meteor.startup(() => {
         }, (err) => {
             console.log('error', error);
         });
-
-
     });
 });
