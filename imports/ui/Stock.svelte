@@ -1,5 +1,5 @@
 <script>
-    console.log("Stock", "Stock");
+    console.log("Stocks", "Stocks");
 
     export let stock;
 
@@ -31,13 +31,14 @@ td {
 }
 </style>
 
-
 <tr>
 <th class="info">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <a target="_blank" href="/graph/{stock.stock}" class="btn btn-primary">
         <span class="glyphicon glyphicon-stats"></span>
-   </button>
-    <a href="#" class="tooltip-test" title="{stock.short} ({stock.sector} - {stock.industry})">{stock.stock}</a>
+    </a>
+    <a href="#" class="tooltip-test" title="{stock.short} ({stock.sector} - {stock.industry})">
+        {stock.stock}
+    </a>
 </th>
 
 <td class="{colorGreenRed(stock.today, 0, 0)}">
