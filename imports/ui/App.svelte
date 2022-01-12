@@ -4,6 +4,7 @@
 
   import Stocks from './Stocks.svelte';
   import Graph from './Graph.svelte';
+  import BubbleChart from './BubbleChart.svelte';
   
   export let url = '';
 
@@ -15,4 +16,5 @@
 <Router url="{url}">
     <Route path="stocks" component="{Stocks}"/>
     <Route path="graph/:stockName" component="{Graph}"/>
+    <Route path="bubble" component="{BubbleChart}"/>
 </Router>

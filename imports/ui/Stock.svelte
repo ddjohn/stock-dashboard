@@ -34,7 +34,13 @@
         return color_na;
     }
 
-    
+    function twoDecimals(obj) {
+        if(obj === undefined)
+            return obj;
+
+        return obj.toFixed(2);
+    }
+
 </script>
 
 <style>
@@ -48,48 +54,48 @@ td {
     <a target="_blank" href="/graph/{stock.stock}" class="btn btn-primary">
         <span class="glyphicon glyphicon-stats"></span>
     </a>
-    <a href="#" class="tooltip-test" title="{stock.short} ({stock.sector} - {stock.industry})">
+    <a href="/" class="tooltip-test" title="{stock.short} ({stock.sector} - {stock.industry})">
         {stock.stock}
     </a>
 </th>
 
 <!-- Price -->
 <td class="{color(stock.today, 'danger', 0, 'info', 0, 'success')}">
-        {stock.price.toFixed(2)}<br/>
-    ({(100*stock.today).toFixed(2)}%)
+        { twoDecimals(stock.price) }<br/>
+    ({ twoDecimals(100*stock.today) }%)
 </td>
 
 <!-- Volume -->
 <td class="{color(stock.volumePct, 'info', 0.2, 'info', 0.2, 'success')}">
     {stock.volume}<br/>
-    ({(100*stock.volumePct).toFixed(2)})
+    ({ twoDecimals(100*stock.volumePct) })
 </td>
 
 <!-- 50 days average-->
 <td class="{color(stock.price - stock.average50, 'info', 0.2, 'info', 0.2, 'success')}">
-    { (100*(stock.price - stock.average50)/stock.average50).toFixed(2) }%
+    { twoDecimals(100*(stock.price - stock.average50)/stock.average50) }%
 </td>
 
 <!-- 200 days average-->
 <td class="{color(stock.price - stock.average200, 'info', 0.2, 'info', 0.2, 'success')}">
-    { (100*(stock.price - stock.average200)/stock.average200).toFixed(2) }% 
+    { twoDecimals(100*(stock.price - stock.average200)/stock.average200) }% 
 </td>
 
 <!-- Donchian tunnel-->
 <td class="{color((stock.price - stock.donchianLow) / (stock.donchianHigh - stock.donchianLow), 'danger', 0.1, 'info', 0.99, 'success')}">
-    {stock.donchianLow.toFixed(2)}-{stock.donchianHigh.toFixed(2)}<br/>
-    ({(100.0*(stock.price - stock.donchianLow) / (stock.donchianHigh - stock.donchianLow)).toFixed(2)}%)    
+    { twoDecimals(stock.donchianLow) }-{ twoDecimals(stock.donchianHigh) }<br/>
+    ({ twoDecimals(100.0*(stock.price - stock.donchianLow) / (stock.donchianHigh - stock.donchianLow)) }%)    
 </td>
 
 <!-- Bollinger -->
 <td class="{colorGreenRed( (stock.price - (stock.average20-2*stock.deviation)) / ( (stock.average20+2*stock.deviation) - (stock.average20-2*stock.deviation)), 0, 0)}">
     {(stock.average20-2*stock.deviation).toFixed(2)} - {(stock.average20+2*stock.deviation).toFixed(2)}<br/>
-    ({ (100.0*(stock.price - (stock.average20-2*stock.deviation) ) / ( (stock.average20+2*stock.deviation) - (stock.average20-2*stock.deviation) )).toFixed(2)}%)    
+    ({ twoDecimals(100.0*(stock.price - (stock.average20-2*stock.deviation) ) / ( (stock.average20+2*stock.deviation) - (stock.average20-2*stock.deviation) )) }%)    
 </td>
 
 <!-- Squeeze -->
 <td class="{color(4*stock.deviation, 'success', 5, 'info', 5, 'info')}">
-    {(4*stock.deviation).toFixed(2)}<br/>
+    { twoDecimals(4*stock.deviation) }<br/>
 </td>
 
 <!-- Recommenations-->

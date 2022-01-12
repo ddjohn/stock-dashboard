@@ -5,7 +5,6 @@
   import { StockCollection } from '../api/StockCollection';
 
   let searchTerm = '';
-  let graph ="ERIC-B.ST";
 
   $m: stocks = StockCollection.find({}, {sort: {stock: 1}}).fetch();
 	$: filteredStocks = stocks.filter(stock => stock.stock.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
@@ -18,10 +17,10 @@
   <table border="1" class="table table-hover table-sm table-condensed">
     <thead>
       <tr class="info">
-        <th colspan="1"><input type="search" placeholder="Search..." bind:value={searchTerm}/>{searchTerm}</th>
+        <th colspan="1"><input type="search" placeholder="Search..." bind:value={searchTerm}/></th>
         <th colspan="2">Price/Volume</th>
         <th colspan="2">Trends</th>
-        <th colspan="4">Analysis</th>
+        <th colspan="4  ">Analysis</th>
         <th colspan="2">Finance</th>
       </tr>
       <tr class="info">
