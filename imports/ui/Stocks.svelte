@@ -1,8 +1,18 @@
 <script>
-  console.log('Stocks', 'Stocks');
+  console.log('Stocks', 'Stocks');  
 
   import Stock from './Stock.svelte';
   import { StockCollection } from '../api/StockCollection';
+  import  {Array2} from '../api/TechnicalAnalysis';
+
+  require('../api/TechnicalAnalysis');
+
+  console.log([1, 2, 3, 4, 5].stats());
+  console.log([1, 2, 3, 4, 5].limit(3).stats());
+  console.log([1, 2, 3, 4, 5].limit(0));
+  console.log([1, 2, 3].limit(3));
+  console.log([1, 2].limit(3));
+  
 
   let searchTerm = '';
 

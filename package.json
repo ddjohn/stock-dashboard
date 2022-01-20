@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
+    "async": "^3.2.3",
     "google-chart": "0.0.1-security",
     "google-charts": "^2.0.0",
     "got": "^11.8.3",
