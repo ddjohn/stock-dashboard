@@ -3,7 +3,6 @@
 
     export let stock;
 
-
     function colorGreenRed(value, green , red) {
         if(value < red)
             return 'danger';

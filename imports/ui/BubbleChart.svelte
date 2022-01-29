@@ -41,6 +41,8 @@
 
                 var index = resp.timestamp.length-1;   
                 const today = resp.indicators.quote[0].close[index];
+                const volume = resp.indicators.quote[0].volume[index];
+
 
                 const rsi = closeArray.limit(15).rsi(); // 14 days rsi (one extra due to comparision)
                 console.log("2", stockName, closeArray.limit(15));
@@ -61,8 +63,11 @@
                     console.log("donchian______", stockName, resp.indicators.quote[0].close.reverse().limit(20));
                 }
 
-                arr.push([stockName, rsi, color, trend, squeeze/10]);
-
+                if(today * volume > 20000000) {
+                    arr.push([stockName, rsi, color, trend, squeeze/10]);
+                } else {
+                    console.log('low', today*volume);
+                }
                 //console.log('BubbleChart', stockName, "today=" + today, "rsi=" + rsi, 
                 //"donchian=" + color, "trend=" + trend, "squeeze=" + squeeze,
                 //"bolinger=", bollinger, "dochian=", donchian);

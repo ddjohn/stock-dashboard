@@ -6,6 +6,8 @@ import { StockCollection } from '/imports/api/StockCollection';
 import { StockMethods, stocks } from '/server/StockMethods';
 import '/imports/api/StockAPI';
 
+import '/imports/api/IotAPI';
+
 function percentage(current, base) {
     return (current-base)/base;
 }
@@ -36,7 +38,7 @@ Meteor.startup(() => {
     console.log('main', 'startup');
 
     const stockMethods = new StockMethods();
-
+   
     stocks.forEach((stock) => {
         console.log('stock', stock);
 

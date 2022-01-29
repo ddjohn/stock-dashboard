@@ -565,8 +565,6 @@ export class StockMethods {
             });    
         });
     }
-
-
 }
 
 /*
