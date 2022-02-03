@@ -1,7 +1,7 @@
 <script>
-  console.log('Stocks', 'Stocks');  
+  console.log('StocksPage', 'StocksPage');  
 
-  import Stock from './Stock.svelte';
+  import StockFragment from './StockFragment.svelte';
   import { StockCollection } from '../api/StockCollection';
 
   require('../api/TechnicalAnalysis');
@@ -46,7 +46,7 @@
     </thead>
     <tbody>
       {#each filteredStocks as stock(stock._id)}
-        <Stock stock={stock}/> 
+        <StockFragment stock={stock}/> 
       {/each}
     </tbody>
   </table>

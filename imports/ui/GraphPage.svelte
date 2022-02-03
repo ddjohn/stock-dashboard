@@ -1,5 +1,5 @@
 <script>
-    console.log("Graph", "Graph");
+    console.log("GraphPage", "GraphPage");
 
     import {GoogleCharts} from 'google-charts';
     export let stockName;
@@ -46,6 +46,8 @@
    }
 
     function drawChart() {
+        console.log("GraphPage", "drawChart()");
+
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 
         var options = {

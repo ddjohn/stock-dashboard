@@ -2,11 +2,11 @@
   console.log('App', 'App');
   import {Link, Route, Router} from 'svelte-routing';
 
-  import Stocks from './Stocks.svelte';
-  import Graph from './Graph.svelte';
-  import BubbleChart from './BubbleChart.svelte';
+  import StocksPage from './StocksPage.svelte';
+  import GraphPage  from './GraphPage.svelte';
+  import BubblePage from './BubblePage.svelte';
+  import IotPage    from './IotPage.svelte';
   import IOT from './IOT.svelte';
-  import IotGraph from './IotGraph.svelte';
   
   export let url = '';
 
@@ -16,9 +16,9 @@
 </script>
 
 <Router url="{url}">
-    <Route path="stocks" component="{Stocks}"/>
-    <Route path="graph/:stockName" component="{Graph}"/>
-    <Route path="bubble" component="{BubbleChart}"/>
+    <Route path="stocks"           component="{StocksPage}"/>
+    <Route path="graph/:stockName" component="{GraphPage}"/>
+    <Route path="bubble"           component="{BubblePage}"/>
+    <Route path="iotgraph"         component="{IotPage}"/> 
     <Route path="data/:temperature/:humidity" component="{IOT}"/> 
-    <Route path="iotgraph/" component="{IotGraph}"/> 
 </Router>

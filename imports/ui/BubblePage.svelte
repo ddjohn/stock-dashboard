@@ -1,5 +1,5 @@
 <script>
-    console.log("BubbleChart", "BubbleChart");
+    console.log("BubblePage", "BubblePage");
 
     import {onMount} from 'svelte';
     import {GoogleCharts} from 'google-charts';
@@ -7,14 +7,14 @@
 
     var arr = [];
 
+    var no = 0;
+    var total = 0;
+    
     GoogleCharts.load(drawChart);
     
     function drawChart() {
-        //console.log('BubbleChart', "drawChart()");
+        console.log('BubblePage', "drawChart()");
         var chart = new google.visualization.BubbleChart(document.getElementById('chart_div'));
-        //google.visualization.events.addListener(chart, 'ready', function() {
-            //console.log("AFTER");
-        //});
 
         var options = {
            title: 'Trend',
@@ -32,7 +32,7 @@
     async function otherAPICall(stockName) {
         Meteor.call('stock.graph', stockName, async (error, resp) => {
             if(error) {
-                console.log('BubbleChart', error);
+                console.log('BubblePage', error);
             }
             else {    
                 const closeArray = resp.indicators.quote[0].close;
@@ -63,8 +63,10 @@
                     console.log("donchian______", stockName, resp.indicators.quote[0].close.reverse().limit(20));
                 }
 
-                if(today * volume > 20000000) {
+                total++;
+                if(today * volume > 100000000) {
                     arr.push([stockName, rsi, color, trend, squeeze/10]);
+                    no++;
                 } else {
                     console.log('low', today*volume);
                 }
@@ -77,7 +79,7 @@
     }
 
     onMount(async () => {
-        console.log('BubbleChart', "onMount()");
+        console.log('BubblePage', "onMount()");
 
         stocks.forEach(async (stockName) => {
             await otherAPICall(stockName);
@@ -85,7 +87,7 @@
 
         console.log('bye');
 	});        
-    
- </script>
+</script>
 
+{no} out of {total} ({100*no/total}%)
 <div id="chart_div"/>

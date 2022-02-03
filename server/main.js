@@ -4,8 +4,9 @@ import { Meteor } from 'meteor/meteor';
 
 import { StockCollection } from '/imports/api/StockCollection';
 import { StockMethods, stocks } from '/server/StockMethods';
-import '/imports/api/StockAPI';
+import { IotMethods } from '/server/IotMethods';
 
+import '/imports/api/StockAPI';
 import '/imports/api/IotAPI';
 
 function percentage(current, base) {
@@ -38,6 +39,7 @@ Meteor.startup(() => {
     console.log('main', 'startup');
 
     const stockMethods = new StockMethods();
+    const iotMethods = new IotMethods();
    
     stocks.forEach((stock) => {
         console.log('stock', stock);

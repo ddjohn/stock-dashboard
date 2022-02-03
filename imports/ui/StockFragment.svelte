@@ -1,5 +1,5 @@
 <script>
-    console.log("Stocks", "Stocks");
+    console.log("StockFragment", "StockFragment");
 
     export let stock;
 
@@ -53,7 +53,7 @@ td {
     <a target="_blank" href="/graph/{stock.stock}" class="btn btn-primary">
         <span class="glyphicon glyphicon-stats"></span>
     </a>
-    <a href="/" class="tooltip-test" title="{stock.short} ({stock.sector} - {stock.industry})">
+    <a href="/graph/{stock.stock}" class="tooltip-test" title="{stock.short} ({stock.sector} - {stock.industry})">
         {stock.stock}
     </a>
 </th>

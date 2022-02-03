@@ -9,6 +9,7 @@ Future = Npm.require("fibers/future");
 const stockMethods = new StockMethods();
 
 Meteor.methods({
+
   'stock.graph': function(stockName) {
     console.log('StockAPI', 'stock.graph');
     check(stockName, String);

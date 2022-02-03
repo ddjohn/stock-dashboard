@@ -3,8 +3,6 @@ console.log('TechnicalAnalysis', 'TechnicalAnalysis');
 Object.defineProperty(Array.prototype, "limit", {
     enumerable: false,
     value: function limit(num) {
- //       return this.filter(i => i).slice(0, num);
-// return this.reverse().filter(i => i).slice(0, num).reverse();
         return this.slice(-num);
 },
 });
