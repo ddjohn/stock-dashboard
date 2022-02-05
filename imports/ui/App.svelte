@@ -20,10 +20,19 @@
   $m: {
     user = Meteor.user();
   }
+
+
+  const logout = () => Meteor.logout();
 </script>
 
+<br>
+<br>
 User: {user}
 {#if user}
+<div class="user" on:click={logout}>
+  {user.username} 🚪
+</div>
+
   <Router url="{url}">
     <Route path="stocks"           component="{StocksPage}"/>
     <Route path="graph/:stockName" component="{GraphPage}"/>
