@@ -1,6 +1,7 @@
 console.log('main', 'main');
 
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 
 import { StockCollection } from '/imports/api/StockCollection';
 import { StockMethods, stocks } from '/server/StockMethods';
@@ -8,6 +9,9 @@ import { IotMethods } from '/server/IotMethods';
 
 import '/imports/api/StockAPI';
 import '/imports/api/IotAPI';
+
+const SEED_USERNAME = 'meteorite';
+const SEED_PASSWORD = 'password';
 
 function percentage(current, base) {
     return (current-base)/base;
@@ -38,9 +42,17 @@ function averageWithNull(arr) {
 Meteor.startup(() => {
     console.log('main', 'startup');
 
+    if (!Accounts.findUserByUsername(SEED_USERNAME)) {
+        Accounts.createUser({
+          username: SEED_USERNAME,
+          password: SEED_PASSWORD,
+        });
+    }
+
     const stockMethods = new StockMethods();
     const iotMethods = new IotMethods();
-   
+ 
+    
     stocks.forEach((stock) => {
         console.log('stock', stock);
 
