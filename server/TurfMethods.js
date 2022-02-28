@@ -26,6 +26,6 @@ export class TurfMethods {
                 console.log(".");
                 TurfLocationCollection.insert({date: Date.now(), json: json})
             }
-        ), 2000);
+        ), 5000);
     }
 }

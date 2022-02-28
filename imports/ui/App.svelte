@@ -21,25 +21,30 @@
     user = Meteor.user();
   }
 
-
   const logout = () => Meteor.logout();
 </script>
 
 <br>
 <br>
-User: {user}
-{#if user}
-<div class="user" on:click={logout}>
-  {user.username} 🚪
-</div>
+  User: {user}
 
-  <Router url="{url}">
-    <Route path="stocks"           component="{StocksPage}"/>
-    <Route path="graph/:stockName" component="{GraphPage}"/>
-    <Route path="bubble"           component="{BubblePage}"/>
-    <Route path="iotgraph"         component="{IotPage}"/> 
-    <Route path="data/:temperature/:humidity" component="{IOT}"/>
-  </Router>
-{:else}
-  <LoginPage />
-{/if}
+  {#if user}
+    <div class="user" on:click={logout}>
+      {user.username} 🚪
+    </div>
+
+    <Router url="{url}">
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="about">About</Link>
+        <Link to="blog">Blog</Link>
+      </nav>
+      <Route path="stocks"           component="{StocksPage}"/>
+      <Route path="graph/:stockName" component="{GraphPage}"/>
+      <Route path="bubble"           component="{BubblePage}"/>
+      <Route path="iotgraph"         component="{IotPage}"/> 
+      <Route path="data/:temperature/:humidity" component="{IOT}"/>
+    </Router>
+  {:else}
+    <LoginPage />
+  {/if}

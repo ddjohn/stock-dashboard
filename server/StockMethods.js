@@ -594,6 +594,7 @@ export class StockMethods {
     }
 
     main() {
+        setInterval(() => {
         stocks.forEach((stock) => {
             console.log('stock', stock);
     
@@ -663,6 +664,7 @@ export class StockMethods {
                 console.log('error', error);
             });
         });
+    }, 1800000);
     }
 }
 
