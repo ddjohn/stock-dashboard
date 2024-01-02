@@ -70,6 +70,7 @@
                     console.log('low', today*volume);
                 }
 
+                if(today !== null)
                 jsonstocks.arr.push({
                     "name":stockName,
                     "today":today,
@@ -120,8 +121,15 @@ let colorRSI = (value) => {
 }
 
 let colorHighRevenue = (value) => {
-    if (value > 1000000) 
+    if (value > 100000000) 
         return 'lightgreen';
+}
+
+let colorHunderedPercent = (value) => {
+    if (value >= 99.9) 
+        return 'lightgreen';
+    else if(value < 0.1)
+        return '#ffcccc';
 }
 </script>
 
@@ -148,13 +156,13 @@ let colorHighRevenue = (value) => {
     {#each jsonstocks.arr as mystock}
         <tr>
             <th>{mystock.name}</th>
-            <td align="right" bgcolor={colorHighRevenue(mystock.today*mystock.volume)}>{Math.round((mystock.today * mystock.volume)/1000/1000).toLocaleString()}</td>
-            <td align="right">{Math.round(mystock.today, 2).toLocaleString()}</td>
-            <td align="right">{Math.round(mystock.sma, 2).toLocaleString()}</td>
+            <td align="right" bgcolor={colorHighRevenue(mystock.today*mystock.volume)}>{((mystock.today * mystock.volume)/1000/1000).toFixed(1).toLocaleString()}</td>
+            <td align="right">{mystock.today.toFixed(2).toLocaleString()}</td>
+            <td align="right">{mystock.sma.toFixed(2).toLocaleString()}</td>
             <td align="right">{mystock.volume.toLocaleString()}</td>
             <td align="right" bgcolor={colorRSI(mystock.rsi)}>{Math.round(mystock.rsi,0)}</td>
-            <td align="right">{Math.round(mystock.color, 1)}</td>
-            <td align="right" bgcolor={colorPlusMinus(mystock.trend)}>{Math.round(mystock.trend, 2)}</td>
+            <td align="right" bgcolor={colorHunderedPercent(mystock.color)}>{mystock.color.toFixed(1)}</td>
+            <td align="right" bgcolor={colorPlusMinus(mystock.trend)}>{mystock.trend.toFixed(2)}</td>
             <td align="right">{mystock.squeeze}</td>
             <td align="right">{mystock.bollinger}</td>
             <td align="right">{mystock.color}</td>
